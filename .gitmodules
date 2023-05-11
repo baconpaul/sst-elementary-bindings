@@ -1,0 +1,12 @@
+[submodule "libs/elementary"]
+	path = libs/elementary
+	url = https://github.com/elemaudio/elementary
+[submodule "libs/sst-filters"]
+	path = libs/sst-filters
+	url = https://github.com/surge-synthesizer/sst-filters
+[submodule "libs/sst-waveshapers"]
+	path = libs/sst-waveshapers
+	url = https://github.com/surge-synthesizer/sst-waveshapers
+[submodule "libs/sst-basic-blocks"]
+	path = libs/sst-basic-blocks
+	url = https://github.com/surge-synthesizer/sst-basic-blocks
