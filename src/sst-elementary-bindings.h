@@ -8,7 +8,7 @@ template <typename FloatType> void registerSSTElementaryBindings(elem::Runtime<F
 {
     runtime.registerNodeType("baconNode",
                              [](elem::NodeId const id, double sampleRate, int const blockSize) {
-                                 return std::make_shared<BaconNode>(id, sampleRate, blockSize);
+                                 return std::make_shared<BaconNode<FloatType>>(id, sampleRate, blockSize);
                              });
 }
 } // namespace sst::elementary

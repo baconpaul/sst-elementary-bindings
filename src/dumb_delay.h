@@ -1,9 +1,10 @@
 #include "GraphNode.h"
 #include <array>
 
-struct BaconNode : elem::GraphNode<float>
+template<typename FloatType>
+struct BaconNode : elem::GraphNode<FloatType>
 {
-    using elem::GraphNode<float>::GraphNode;
+    using elem::GraphNode<FloatType>::GraphNode;
 
     void setProperty(std::string const& key, elem::js::Value const& val) override
     {
@@ -13,9 +14,9 @@ struct BaconNode : elem::GraphNode<float>
     }
 
     static constexpr size_t bs{1<<14};
-    std::array<float, bs> delayBuffer{};
+    std::array<FloatType, bs> delayBuffer{};
     int wp{0};
-    void process (elem::BlockContext<float> const& ctx) override
+    void process (elem::BlockContext<FloatType> const& ctx) override
     {
        auto** inputData = ctx.inputData;
        auto* outputData = ctx.outputData;
@@ -23,7 +24,7 @@ struct BaconNode : elem::GraphNode<float>
        auto numSamples = ctx.numSamples;
 
        if (numChannels < 1)
-          return (void) std::fill_n(outputData, numSamples, float(0));
+          return (void) std::fill_n(outputData, numSamples, FloatType(0));
 
        // Copy the first input to the output buffer
        for (size_t i = 0; i < numSamples; ++i) {
@@ -33,7 +34,7 @@ struct BaconNode : elem::GraphNode<float>
        }
     }
 
-    std::atomic<float> value { 0 };
+    std::atomic<FloatType> value { 0 };
 
 };
  
